@@ -9,13 +9,18 @@
 /* Begin PBXBuildFile section */
 		CE3FE6362B13E9C800A199AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3FE6352B13E9C800A199AF /* AppDelegate.swift */; };
 		CE3FE6382B13E9C800A199AF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3FE6372B13E9C800A199AF /* SceneDelegate.swift */; };
-		CE3FE63A2B13E9C800A199AF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3FE6392B13E9C800A199AF /* ViewController.swift */; };
-		CE3FE63D2B13E9C800A199AF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE3FE63B2B13E9C800A199AF /* Main.storyboard */; };
+		CE3FE63A2B13E9C800A199AF /* WeatherVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3FE6392B13E9C800A199AF /* WeatherVC.swift */; };
 		CE3FE63F2B13E9C900A199AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE3FE63E2B13E9C900A199AF /* Assets.xcassets */; };
 		CE3FE6422B13E9C900A199AF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE3FE6402B13E9C900A199AF /* LaunchScreen.storyboard */; };
 		CE3FE64D2B13E9CA00A199AF /* WeatherlyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3FE64C2B13E9CA00A199AF /* WeatherlyTests.swift */; };
 		CE3FE6572B13E9CA00A199AF /* WeatherlyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3FE6562B13E9CA00A199AF /* WeatherlyUITests.swift */; };
 		CE3FE6592B13E9CA00A199AF /* WeatherlyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3FE6582B13E9CA00A199AF /* WeatherlyUITestsLaunchTests.swift */; };
+		CE6D5EC52B14D78600FB0E95 /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6D5EC42B14D78600FB0E95 /* WeatherViewModel.swift */; };
+		CE6D5EC72B14D7A400FB0E95 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6D5EC62B14D7A400FB0E95 /* WeatherModel.swift */; };
+		CE6D5EC92B14D7BD00FB0E95 /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6D5EC82B14D7BD00FB0E95 /* WeatherData.swift */; };
+		CE6D5ECB2B14D89C00FB0E95 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6D5ECA2B14D89C00FB0E95 /* HTTPClient.swift */; };
+		CE84194C2B15F07C0076F6F0 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE84194B2B15F07C0076F6F0 /* String+Extensions.swift */; };
+		CE84194E2B16325C0076F6F0 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE84194D2B16325C0076F6F0 /* Color+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,8 +44,7 @@
 		CE3FE6322B13E9C800A199AF /* Weatherly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weatherly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE3FE6352B13E9C800A199AF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE3FE6372B13E9C800A199AF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		CE3FE6392B13E9C800A199AF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		CE3FE63C2B13E9C800A199AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		CE3FE6392B13E9C800A199AF /* WeatherVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherVC.swift; sourceTree = "<group>"; };
 		CE3FE63E2B13E9C900A199AF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE3FE6412B13E9C900A199AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE3FE6432B13E9C900A199AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,6 +53,12 @@
 		CE3FE6522B13E9CA00A199AF /* WeatherlyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherlyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE3FE6562B13E9CA00A199AF /* WeatherlyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherlyUITests.swift; sourceTree = "<group>"; };
 		CE3FE6582B13E9CA00A199AF /* WeatherlyUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherlyUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		CE6D5EC42B14D78600FB0E95 /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
+		CE6D5EC62B14D7A400FB0E95 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
+		CE6D5EC82B14D7BD00FB0E95 /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
+		CE6D5ECA2B14D89C00FB0E95 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
+		CE84194B2B15F07C0076F6F0 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		CE84194D2B16325C0076F6F0 /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,13 +109,16 @@
 		CE3FE6342B13E9C800A199AF /* Weatherly */ = {
 			isa = PBXGroup;
 			children = (
+				CE84194A2B15F0690076F6F0 /* Extensions */,
+				CE3FE6692B13EAA600A199AF /* Model */,
+				CE3FE6652B13E9E900A199AF /* ViewModel */,
 				CE3FE6352B13E9C800A199AF /* AppDelegate.swift */,
 				CE3FE6372B13E9C800A199AF /* SceneDelegate.swift */,
-				CE3FE6392B13E9C800A199AF /* ViewController.swift */,
-				CE3FE63B2B13E9C800A199AF /* Main.storyboard */,
+				CE3FE6662B13EA2400A199AF /* Controller */,
 				CE3FE63E2B13E9C900A199AF /* Assets.xcassets */,
 				CE3FE6402B13E9C900A199AF /* LaunchScreen.storyboard */,
 				CE3FE6432B13E9C900A199AF /* Info.plist */,
+				CE6D5ECC2B14D8A800FB0E95 /* Client */,
 			);
 			path = Weatherly;
 			sourceTree = "<group>";
@@ -125,6 +138,48 @@
 				CE3FE6582B13E9CA00A199AF /* WeatherlyUITestsLaunchTests.swift */,
 			);
 			path = WeatherlyUITests;
+			sourceTree = "<group>";
+		};
+		CE3FE6652B13E9E900A199AF /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CE6D5EC42B14D78600FB0E95 /* WeatherViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		CE3FE6662B13EA2400A199AF /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CE3FE6392B13E9C800A199AF /* WeatherVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CE3FE6692B13EAA600A199AF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CE6D5EC62B14D7A400FB0E95 /* WeatherModel.swift */,
+				CE6D5EC82B14D7BD00FB0E95 /* WeatherData.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CE6D5ECC2B14D8A800FB0E95 /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				CE6D5ECA2B14D89C00FB0E95 /* HTTPClient.swift */,
+			);
+			path = Client;
+			sourceTree = "<group>";
+		};
+		CE84194A2B15F0690076F6F0 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CE84194B2B15F07C0076F6F0 /* String+Extensions.swift */,
+				CE84194D2B16325C0076F6F0 /* Color+Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,7 +288,6 @@
 			files = (
 				CE3FE6422B13E9C900A199AF /* LaunchScreen.storyboard in Resources */,
 				CE3FE63F2B13E9C900A199AF /* Assets.xcassets in Resources */,
-				CE3FE63D2B13E9C800A199AF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,9 +312,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE3FE63A2B13E9C800A199AF /* ViewController.swift in Sources */,
+				CE3FE63A2B13E9C800A199AF /* WeatherVC.swift in Sources */,
+				CE6D5EC52B14D78600FB0E95 /* WeatherViewModel.swift in Sources */,
+				CE84194E2B16325C0076F6F0 /* Color+Extensions.swift in Sources */,
 				CE3FE6362B13E9C800A199AF /* AppDelegate.swift in Sources */,
+				CE6D5ECB2B14D89C00FB0E95 /* HTTPClient.swift in Sources */,
+				CE84194C2B15F07C0076F6F0 /* String+Extensions.swift in Sources */,
 				CE3FE6382B13E9C800A199AF /* SceneDelegate.swift in Sources */,
+				CE6D5EC92B14D7BD00FB0E95 /* WeatherData.swift in Sources */,
+				CE6D5EC72B14D7A400FB0E95 /* WeatherModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,14 +357,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		CE3FE63B2B13E9C800A199AF /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CE3FE63C2B13E9C800A199AF /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		CE3FE6402B13E9C900A199AF /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -442,7 +494,6 @@
 				INFOPLIST_FILE = Weatherly/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -470,7 +521,6 @@
 				INFOPLIST_FILE = Weatherly/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct WeatherModel {
+struct WeatherModel: Codable {
     let conditionId: Int
     let cityName: String
     let temperature: Double

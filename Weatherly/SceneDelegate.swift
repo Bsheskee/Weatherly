@@ -15,7 +15,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
-        window.rootViewController = WeatherVC(viewModel: WeatherViewModel(httpClient: HTTPClient(), weatherModel: WeatherModel(conditionId: 200, cityName: "Paris", temperature: 20)))
+        window.rootViewController = WeatherVC(viewModel: WeatherViewModel(httpClient: HTTPClient()))
         window.makeKeyAndVisible()
         self.window = window
     }

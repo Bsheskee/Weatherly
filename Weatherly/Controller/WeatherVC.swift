@@ -4,6 +4,8 @@
 //
 //  Created by bartek on 26/11/2023.
 //
+// The preview updates are not showing the components due to being hidden initially. UIKit seems to not handle the preview as expected. To see UI please build it in the simulator.
+//
 
 import UIKit
 import SwiftUI
@@ -16,16 +18,22 @@ class WeatherVC: UIViewController {
     private var cancellables: Set<AnyCancellable> = []
     private var searchedCity: String?
     
-    init(viewModel: WeatherViewModel) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     let locationManager = CLLocationManager()
+    
+    var isLoading: Bool = false {
+        didSet {
+            if isLoading {
+                startLoadingIndicator()
+            } else {
+                removeLoadingIndicator()
+            }
+        }
+    }
+    let activityIndicatorView: UIActivityIndicatorView = {
+            let indicator = UIActivityIndicatorView(style: .large)
+            indicator.translatesAutoresizingMaskIntoConstraints = false
+            return indicator
+        }()
     
     private lazy var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
@@ -41,7 +49,6 @@ class WeatherVC: UIViewController {
         }
         return searchBar
     }()
-    
     private let cityLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor(named: "Accent")
@@ -97,6 +104,15 @@ class WeatherVC: UIViewController {
         return imageView
     }()
     
+    init(viewModel: WeatherViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
@@ -104,18 +120,25 @@ class WeatherVC: UIViewController {
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
-        view.backgroundColor = .white
+        isLoading = true
+        hideUIComponents()
         
         viewModel.weatherModelPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] model in
-                self?.conditionImageView.image = UIImage(systemName: model.conditionName)
-                self?.cityLabel.text = model.cityName
-                self?.temperatureLabel.text = model.temperatureString
+            if self?.viewModel.isWeatherAvailable == true {
+                self?.isLoading = false
+                    
+                if let model = model {
+                        self?.showUIComponents()
+                        self?.conditionImageView.image = UIImage(systemName: model.conditionName)
+                        self?.cityLabel.text = model.cityName
+                        self?.temperatureLabel.text = model.temperatureString
+                    }
+                }
             }.store(in: &cancellables)
     }
     private func setupUI() {
-//        view.addSubview(backgroundImage)
         view.addSubview(searchBar)
         view.addSubview(cityLabel)
         view.addSubview(temperatureLabel)
@@ -172,9 +195,29 @@ class WeatherVC: UIViewController {
     @objc func searchButtonPressed() {
         if let searchedCity = searchedCity {
             viewModel.setSearchText(searchedCity)
-        } else {
-            print("searchedCity is nil")
         }
+    }
+    private func startLoadingIndicator() {
+        view.addSubview(activityIndicatorView)
+        activityIndicatorView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        activityIndicatorView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        activityIndicatorView.startAnimating()
+    }
+    private func removeLoadingIndicator() {
+        activityIndicatorView.stopAnimating()
+        activityIndicatorView.removeFromSuperview()
+    }
+    private func showUIComponents() {
+        conditionImageView.isHidden = false
+        cityLabel.isHidden = false
+        temperatureLabel.isHidden = false
+        celsiusLabel.isHidden = false
+    }
+    private func hideUIComponents() {
+        conditionImageView.isHidden = true
+        cityLabel.isHidden = true
+        temperatureLabel.isHidden = true
+        celsiusLabel.isHidden = true
     }
 }
 extension WeatherVC: CLLocationManagerDelegate {
@@ -189,6 +232,7 @@ extension WeatherVC: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error)
     }
+    
 }
 extension WeatherVC: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -205,17 +249,23 @@ struct WeatherVCRepresentable: UIViewControllerRepresentable {
     
     typealias UIViewControllerType = WeatherVC
     
+    var isLoading: Bool
+    
     func updateUIViewController(_ uiViewController: WeatherVC, context: Context) {
+        uiViewController.isLoading = isLoading
     }
     
     func makeUIViewController(context: Context) -> WeatherVC {
-        WeatherVC(viewModel: WeatherViewModel(httpClient: HTTPClient(), weatherModel: WeatherModel(conditionId: 200, cityName: "City Name", temperature: 2)))
+        let vc = WeatherVC(viewModel: WeatherViewModel(httpClient: HTTPClient()))
+        vc.isLoading = false
+        return vc
+//        WeatherVC(viewModel: WeatherViewModel(httpClient: HTTPClient()))
     }
 }
 @available(iOS 13.0, *)
 struct WeatherVC_Preview: PreviewProvider {
     static var previews: some View {
-        WeatherVCRepresentable()
+        WeatherVCRepresentable(isLoading: false)
     }
 }
 #endif

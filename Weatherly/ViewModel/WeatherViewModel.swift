@@ -10,17 +10,17 @@ import Combine
 import CoreLocation
 
 class WeatherViewModel {
-    @Published private(set) var weatherModel: WeatherModel
+    @Published private(set) var weatherModel: WeatherModel?
     private var cancellables: Set<AnyCancellable> = []
     @Published var updatingCompleted: Bool = false
     
     private var searchSubject = CurrentValueSubject<String, Never>("")
 
     private let httpClient: HTTPClient
-
-    init(httpClient: HTTPClient, weatherModel: WeatherModel) {
+    private let offlineService: WeatherOfflineService = .init()
+    
+    init(httpClient: HTTPClient) {
         self.httpClient = httpClient
-        self.weatherModel = weatherModel
         setupSearchPublisher()
     }
 
@@ -32,13 +32,18 @@ class WeatherViewModel {
                     self?.updatingCompleted = true
                 case .failure(let error):
                     print(error)
+                    self?.weatherModel = nil
                 }
             } receiveValue: { [weak self] model in
                 self?.weatherModel = model
             }.store(in: &cancellables)
     }
     func updateWeather(lat: CLLocationDegrees, long: CLLocationDegrees) {
-        httpClient.fetchWeather(latitude: lat, longitude: long)
+        httpClient.fetchWeather(latitude: lat, longitude: long).catch { [weak self] error in
+            return self?.offlineService.getOffline() ?? Empty().eraseToAnyPublisher()
+        }.handleEvents(receiveOutput: { [weak self] weatherData in
+            self?.offlineService.saveOffline(weather: weatherData)
+        }).eraseToAnyPublisher()
             .sink {  [weak self] completion in
                 switch completion {
                 case .finished:
@@ -72,5 +77,10 @@ class WeatherViewModel {
         let filteredText = englishOnlyText.components(separatedBy: allowedCharacters.inverted).joined(separator: "")
         return filteredText
     }
-    var weatherModelPublisher: Published<WeatherModel>.Publisher { $weatherModel }
+    var weatherModelPublisher: AnyPublisher<WeatherModel?, Never> {
+           return $weatherModel.eraseToAnyPublisher()
+       }
+    var isWeatherAvailable: Bool {
+            return weatherModel != nil
+        }
 }

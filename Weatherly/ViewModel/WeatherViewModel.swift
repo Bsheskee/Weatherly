@@ -66,7 +66,7 @@ class WeatherViewModel {
         let englishOnlyText = filterNonEnglishCharacters(from: searchText)
         searchSubject.send(englishOnlyText)
     }
-    private func filterNonEnglishCharacters(from text: String) -> String {
+    internal func filterNonEnglishCharacters(from text: String) -> String { //set internal for testing
         let allowedCharacters = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ+")
         var englishOnlyText = text
 

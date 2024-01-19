@@ -22,6 +22,7 @@
 		CE84194C2B15F07C0076F6F0 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE84194B2B15F07C0076F6F0 /* String+Extensions.swift */; };
 		CE84194E2B16325C0076F6F0 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE84194D2B16325C0076F6F0 /* Color+Extensions.swift */; };
 		CEA45DDB2B176AC300D67022 /* WeatherOfflineService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA45DDA2B176AC300D67022 /* WeatherOfflineService.swift */; };
+		CEC7360E2B5A8515008FC1A2 /* WeatherVC+UIConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC7360D2B5A8515008FC1A2 /* WeatherVC+UIConfiguration.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		CE84194B2B15F07C0076F6F0 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		CE84194D2B16325C0076F6F0 /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
 		CEA45DDA2B176AC300D67022 /* WeatherOfflineService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherOfflineService.swift; sourceTree = "<group>"; };
+		CEC7360D2B5A8515008FC1A2 /* WeatherVC+UIConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeatherVC+UIConfiguration.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,16 +113,16 @@
 		CE3FE6342B13E9C800A199AF /* Weatherly */ = {
 			isa = PBXGroup;
 			children = (
-				CE84194A2B15F0690076F6F0 /* Extensions */,
-				CE3FE6692B13EAA600A199AF /* Model */,
-				CE3FE6652B13E9E900A199AF /* ViewModel */,
 				CE3FE6352B13E9C800A199AF /* AppDelegate.swift */,
 				CE3FE6372B13E9C800A199AF /* SceneDelegate.swift */,
-				CE3FE6662B13EA2400A199AF /* Controller */,
+				CE3FE6692B13EAA600A199AF /* Model */,
+				CE3FE6652B13E9E900A199AF /* ViewModel */,
+				CE3FE6662B13EA2400A199AF /* View */,
+				CE6D5ECC2B14D8A800FB0E95 /* Client */,
+				CE84194A2B15F0690076F6F0 /* Extensions */,
 				CE3FE63E2B13E9C900A199AF /* Assets.xcassets */,
 				CE3FE6402B13E9C900A199AF /* LaunchScreen.storyboard */,
 				CE3FE6432B13E9C900A199AF /* Info.plist */,
-				CE6D5ECC2B14D8A800FB0E95 /* Client */,
 			);
 			path = Weatherly;
 			sourceTree = "<group>";
@@ -150,12 +152,13 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		CE3FE6662B13EA2400A199AF /* Controller */ = {
+		CE3FE6662B13EA2400A199AF /* View */ = {
 			isa = PBXGroup;
 			children = (
 				CE3FE6392B13E9C800A199AF /* WeatherVC.swift */,
+				CEC7360D2B5A8515008FC1A2 /* WeatherVC+UIConfiguration.swift */,
 			);
-			path = Controller;
+			path = View;
 			sourceTree = "<group>";
 		};
 		CE3FE6692B13EAA600A199AF /* Model */ = {
@@ -316,6 +319,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE3FE63A2B13E9C800A199AF /* WeatherVC.swift in Sources */,
+				CEC7360E2B5A8515008FC1A2 /* WeatherVC+UIConfiguration.swift in Sources */,
 				CE6D5EC52B14D78600FB0E95 /* WeatherViewModel.swift in Sources */,
 				CEA45DDB2B176AC300D67022 /* WeatherOfflineService.swift in Sources */,
 				CE84194E2B16325C0076F6F0 /* Color+Extensions.swift in Sources */,
